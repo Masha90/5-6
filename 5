@@ -1,0 +1,48 @@
+from character import Character
+
+import random
+
+def fight(players, max_rounds=100):
+    if len(players) < 2:
+        raise ValueError('Недостаточно бойцов для начала боя!')
+
+    print('Бойцы:')
+    for player in players:
+        print(player, '\n')
+
+    rounds = 0
+    while True:
+        if rounds > max_rounds:
+            raise RuntimeError('Слишком много раундов!')
+        for player in players:
+            enemy = random.choice(players)
+            player_dmg = player1.attack(enemy)
+
+            print(f'{player.name} атаковал {enemy.name} и нанёс {round(player_dmg, 1)} урона.')
+            print(f'У {enemy.name} осталось {round(enemy.health, 1)} здоровья.')
+            print()
+
+        players_alive = 0
+        for player in players:
+            players_alive += int(player.alive())
+
+
+        if players_alive <= 1:
+            break
+
+        rounds += 1
+
+    print('Бойцы:')
+    for player in players:
+        print(player, '\n')
+
+
+player1 = Character('Assassin', health=100,
+                    damage=1000, defence=0)
+player2 = Character('Samurai', health=100, damage=15)
+player3 = Character('Ninja', health=9999, damage=1)
+player4 = Character('Vampyre', health=99999, damage=1)
+try:
+    fight([])
+except ValueError:
+    fight([player1, player2,player3,player4])
